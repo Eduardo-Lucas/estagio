@@ -1,0 +1,142 @@
+<div class="container">
+  <h1>Vaga de Estágio</h1>
+  <form>
+    <div class="col-md-8" >
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" minlength="5" maxlength="50" required [(ngModel)]="model.nome" name="nome" #nome="ngModel">
+      <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+        <div [hidden]="!nome.errors.required">
+          O campo Nome é de preenchimento obrigatório!
+        </div>
+        <div [hidden]="!nome.errors.minlength">
+          O campo Nome deve ter no mínimo 5 caracteres.
+        </div>
+        <div [hidden]="!nome.errors.maxlength">
+          O campo Nome deve ter no máximo 50 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="sexo">Sexo</label>  
+     <select class="form-control" id="sexo" required [(ngModel)]="model.sexo" name="sexo" #sexo="ngModel">
+          <option>Masculino</option>
+          <option>Feminino</option>          
+      </select>
+    </div>
+
+    
+    
+    <div class="col-md-4" >
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel">
+    </div>
+    <div class="col-md-4" >
+      <label for="rg">RG</label>
+      <input type="text" class="form-control" id="rg" required [(ngModel)]="model.rg" name="rg" #rg="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="cpf">CPF</label>
+      <input type="text" class="form-control" id="cpf" required [(ngModel)]="model.cpf" name="cpf" #cpf="ngModel">
+    </div>    
+    <div class="col-md-2">
+      <label for="ddd1">DDD</label>
+      <input type="number" class="form-control" id="ddd1" required [(ngModel)]="model.ddd1" name="ddd1" #ddd1="ngModel">
+    </div>
+    <div class="col-md-6">
+      <label for="telefone1">Telefone</label>
+      <input type="number" class="form-control" id="telefone1" required [(ngModel)]="model.telefone1" name="telefone1" #telefone1="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="tipo1">Tipo</label>      
+      <select class="form-control" id="tipo1" required [(ngModel)]="model.tipo1" name="tipo1" #tipo1="ngModel">
+          <option>Residencial</option>
+          <option>Celular</option>
+          <option>Comercial</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="ddd2">DDD</label>
+      <input type="number" class="form-control" id="ddd2" required [(ngModel)]="model.ddd2" name="ddd2" #ddd2="ngModel">
+    </div>
+    <div class="col-md-6">
+      <label for="telefone2">Telefone</label>
+      <input type="number" class="form-control" id="telefone2" required [(ngModel)]="model.telefone2" name="telefone2" #telefone2="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="tipo2">Tipo</label>
+      <select class="form-control" id="tipo2" required [(ngModel)]="model.tipo2" name="tipo2" #tipo2="ngModel">
+          <option>Celular</option>
+          <option>Residencial</option>
+          <option>Comercial</option>
+      </select>
+    </div>
+    <div class="col-md-4" >
+      <label for="endereco">Endereço</label>
+      <input type="text" class="form-control" id="endereco" required [(ngModel)]="model.endereco" name="endereco" #endereco="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="numero">Número</label>
+      <input type="text" class="form-control" id="numero" required [(ngModel)]="model.numero" name="numero" #numero="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="complemento">Complemento</label>
+      <input type="text" class="form-control" id="complemento" required [(ngModel)]="model.complemento" name="complemento" #complemento="ngModel">
+    </div>
+    <div class="col-md-4">
+      <label for="bairro">Bairro</label>
+      <input type="text" class="form-control" id="bairro" required [(ngModel)]="model.bairro" name="bairro" #bairro="ngModel">
+    </div>
+    <div class="col-md-6">
+      <label for="cidade">Cidade</label>
+      <input type="text" class="form-control" id="cidade" required [(ngModel)]="model.cidade" name="cidade" #cidade="ngModel">
+    </div>
+    <div class="col-md-2">
+      <label for="uf">UF</label>      
+      <select class="form-control" id="uf" required [(ngModel)]="model.uf" name="uf" #uf="ngModel">
+          <option>BA</option>
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+      </select>
+    </div>
+    <div class="col-md-12" >
+      <label for="formacao">Formação</label>
+      <textarea type="text" rows="3" class="form-control" id="formacao" required [(ngModel)]="model.formacao" name="formacao" #formacao="ngModel"></textarea>
+    </div>
+    <div class="col-md-12" >
+      <label for="experiencia">Experiência</label>
+      <textarea type="text" rows="3" class="form-control" id="experiencia" required [(ngModel)]="model.experiencia" name="experiencia" #experencia="ngModel"></textarea>
+    </div>
+    <div class="col-md-12">
+      <label for="qualifcacao">Qualificação</label>
+      <textarea type="text" rows="3" class="form-control" id="qualifcacao" required [(ngModel)]="model.qualifcacao" name="qualificacao" #qualificacao="ngModel"></textarea>
+    </div>
+    <div class="col-md-12">
+    <button type="submit" class="btn btn-primary">Grava</button>
+    </div>
+  </form>
+</div>
