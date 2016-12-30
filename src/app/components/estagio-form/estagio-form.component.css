@@ -1,4 +1,18 @@
-.sexo {
-    padding-top: 50px;
-    padding-bottom: 50px;
+.topo {
+    background: #2d3b59;
+    height: 50pt;
+}
+
+h1 {
+    color: white;
+}
+form {
+    width: 97%;
+    border: 1px solid; 
+    border-left: 1px solid;
+    border-color: blue;
+}
+
+button {
+    width: 100%;
 }
