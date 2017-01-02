@@ -1,4 +1,4 @@
-export class Estagio {
+export class Candidato {
     constructor(
         public id?: number,
         public tipo?: string,
