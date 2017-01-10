@@ -1,0 +1,21 @@
+h2 {
+    text-align: initial
+}
+.detalhes, .edita {
+    background: #2d3b59;
+    border: 10px solid;
+    color: white;
+}
+.topo {
+    background: #2d3b59;
+    height: 50pt;
+    align-content: center;
+}
+h1 {
+    color: white;
+}
+table {
+    margin-left: 10px;
+}
+
+

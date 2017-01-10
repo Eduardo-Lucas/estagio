@@ -1,21 +1,74 @@
-<!--
 <div class="container">
   <div class="topo col-xs-6">
   <img src="../assets/usesoft-logo.png" alt="Logo da Usesoft" >
   </div>
   <div class="topo col-xs-6">
-  <h1 id="cabecalho" >Trabalhe Conosco</h1>
+  <h1 id="cabecalho" >Lista de Candidatos</h1>
   </div>
 </div>
--->
 
-<div class="container">
-  <form (ngSubmit)="onSubmit()" #candidateForm="ngForm">    
-    
-   <div *ngIf="alert" class="alert alert-{{alert.type}}" >     
-       {{alert.message}}
-   </div>   
+<!-- DETALHES -->
+<div *ngIf="appState == 'extend'" class="container detalhes" >
+  <div class="row">
+    <div class="col-md-6">
+      <button (click)="changeState('default')" type="button" class="btn btn-default btn-md" data-toggle="tooltip" data-placement="left"
+        title="Fechar">
+                            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                            Fechar
+      </button>
+    </div>
+    <div class="col-md-6">
+      <h3>Detalhes do Candidato</h3>
+    </div>
+  </div>
 
+  <div class="row">
+    <div *ngFor="let candidato of candidatos">
+      <div *ngIf="candidato.$key == activeKey">
+        <div class=col-md-5>
+          <h3 *ngIf="candidato.sexo == 'Masculino' "> Candidato: {{candidato.nome}}</h3>
+          <h3 *ngIf="candidato.sexo == 'Feminino' "> Candidata: {{candidato.nome}}</h3>
+          <ul>
+            <li>Tipo: {{ candidato.tipo }} </li>
+            <li>Telefone: ({{candidato.ddd1}}) {{candidato.telefone1}}-{{candidato.tipo1}}</li>
+            <li *ngIf="candidato.ddd2 !== '' && candidato.telefone2 !== '' && candidato.tipo2 !== ''" >Telefone: ({{candidato.ddd2}}) {{candidato.telefone2}}-{{candidato.tipo2}}</li>
+            <li>Data de Nascimento: {{candidato.dataNascimento | date: 'dd/MM/yyyy' }} </li>
+            <li>Estado Civil: {{candidato.estadoCivil }} </li>
+            <li>No. de Filhos: {{candidato.filhos }} </li>
+            <li>Sexo: {{candidato.sexo}} </li>
+            <li>Nível de Inglês: {{candidato.nivelIngles}} </li>
+          </ul>
+        </div>
+        <div class=col-md-5>
+          <h3> Formação e Experiências </h3>
+          <ul>
+            <li> Formação: {{candidato.formacao}} </li>
+            <li> Experiência: {{candidato.experiencia}} </li>
+            <li> Qualificação: {{candidato.qualificacao}} </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIM DE DETALHES -->
+
+<!-- EDITA O REGISTRO -->
+<div *ngIf="appState == 'edit'" class="container">
+    <div class="row">
+    <div class="col-md-6">
+      <button (click)="changeState('default')" type="button" class="btn btn-default btn-md" data-toggle="tooltip" data-placement="left"
+        title="Fechar">
+                            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                            Fechar
+      </button>
+    </div>
+    <div class="col-md-6">
+      <h3>Formulário do Candidato</h3>
+    </div>
+  </div>
+    <form (submit)="atualizaCadastro()" >
+      
     <div class="col-xs-2">
       <label for="tipo">Escolha o Tipo</label>  
      <select class="form-control" id="tipo" required [(ngModel)]="model.tipo" name="tipo" #tipo="ngModel">
@@ -47,13 +100,13 @@
           <option>Masculino</option>
           <option>Feminino</option>          
       </select>
-    </div>      
+    </div>    
     
     <div class="col-xs-6" >
       <label for="email">Email Válido</label>
       <input type="email" class="form-control" id="email" placeholder="SeuEmail@exemplo.com" 
-      required minlength="10" maxlength="30" [(ngModel)]="model.email" name="email" #email="ngModel" 
-      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+      required minlength="10" maxlength="30" [(ngModel)]="model.email" name="email" #email="ngModel"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" >
       <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
         <div [hidden]="!email.errors.required">
           O campo Email é de preenchimento obrigatório!
@@ -68,7 +121,7 @@
     </div>
     <div class="col-xs-2" >
       <label for="dataNascimento">Data Nascimento</label>
-      <input type="date" class=" form-control" id="dataNascimento" min="1936-12-31" max="1998-12-31" minlength="6"  required [(ngModel)]="model.dataNascimento" name="dataNascimento" #dataNascimento="ngModel">
+      <input type="date" class=" form-control" id="dataNascimento" min="1937-12-31" max="1998-12-31" minlength="6"  required [(ngModel)]="model.dataNascimento" name="dataNascimento" #dataNascimento="ngModel">
       
     </div>
     <div class="col-xs-2">
@@ -238,6 +291,7 @@
       <label for="experiencia">Experiência</label>
       <textarea type="text" rows="3" class="form-control" placeholder="Breve descrição de suas experiências..." id="experiencia" required minlength="5" maxlength="400" [(ngModel)]="model.experiencia" name="experiencia" #experencia="ngModel"></textarea>
     </div>
+
     <div class="col-xs-12">
       <label for="qualificacao">Qualificação</label>
       <textarea type="text" rows="3" class="form-control" placeholder="Breve descrição de suas qualificações..." id="qualificacao" required minlength="5" maxlength="400" [(ngModel)]="model.qualificacao" name="qualificacao" #qualificacao="ngModel"></textarea>
@@ -255,10 +309,129 @@
     </div>
 
     <div class="col-xs-12">
-      <button type="submit" (click)="addCandidato(); candidateForm.reset()" [disabled]="!candidateForm.form.valid" class="btn btn-primary">Grava Registro</button>          
-    </div>      
-            
+      <input type="submit"  class="btn btn-primary" value="Altera Registro">
+    </div>    
+        
+
   </form>
-   
 </div>
+<!-- FIM EDITA O REGISTRO -->
+
+<!-- LISTA DE CANDIDATOS -->
+<div *ngIf="candidatos" class="col-xs-12">
+  <div class="container">
+    <div class="table-responsive">
+  <table class="table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Nome</th>
+        <th>Data de Nascimento</th>
+        <th>Sexo</th>
+        <th>Filhos</th>
+        <th>Email</th>
+        <th>DDD</th>
+        <th>Telefone</th>
+        <th>Tipo de Telefone</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>UF</th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody id="myCandidatos">
+      <tr *ngFor="let candidato of candidatos">
+        <td> {{ candidato.tipo }}</td>
+        <td> {{ candidato.nome }}</td>
+        <td align="center"> {{ candidato.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+        <td> {{ candidato.sexo }}</td>
+        <td align="center" > {{ candidato.filhos }}</td>
+        <td> {{ candidato.email }}</td>
+        <td align="center" > {{ candidato.ddd1 }}</td>
+        <td> {{ candidato.telefone1 }}</td>
+        <td> {{ candidato.tipo1 }}</td>
+        <td> {{ candidato.bairro }}</td>
+        <td> {{ candidato.cidade }}</td>
+        <td> {{ candidato.uf }}</td>
+        <!--  ATIVIDADES DA LISTA -->
+        <!--  MOSTRA DETALHES DO CANDIDATO -->
+        <td> <button (click)="changeState('extend', candidato.$key)" type="button" class="btn btn-default btn-md" data-toggle="tooltip" data-placement="left"
+                title="Mostar Detalhes">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              </button> 
+        </td>
+        <!--  EDITA O REGISTRO DO CANDIDATO -->
+        <td> <button (click)="showEdit(candidato)" type="button" class="btn btn-primary btn-md" data-toggle="tooltip" data-placement="left"
+                title="Editar Registro">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </button> 
+        </td>
+        <!--  APAGA O REGISTRO DO CANDIDATO -->
+        <td>  
+              <!-- Button trigger modal -->
+              <button (click)="changeState('default', candidato.$key)" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
+                data-placement="left" title="Apagar Registro">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Deseja apagar o registro? Esta operação não poderá ser desfeita!</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div *ngFor="let candidato of candidatos">
+                        <div *ngIf="candidato.$key == activeKey && candidato.sexo == 'Masculino'">
+                          Apagar o Candidato:  <strong>{{candidato.nome}}</strong> ?
+                        </div>
+                        <div *ngIf="candidato.$key == activeKey && candidato.sexo == 'Feminino'">
+                          Apagar a Candidata:  <strong>{{candidato.nome}}</strong> ?
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                      <button (click)="deleteCandidato(activeKey)" type="button" class="btn btn-danger" data-dismiss="modal">Apagar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+        </td>
+      </tr>
+     
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>Tipo</th>
+        <th>Nome</th>
+        <th>Data de Nascimento</th>
+        <th>Sexo</th>
+        <th>Filhos</th>
+        <th>Email</th>
+        <th>DDD</th>
+        <th>Telefone</th>
+        <th>Tipo de Telefone</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>UF</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>   
+    </div>
+  </div>
+</div>
+<!-- FIM LISTA DE CANDIDATOS -->
+
 
