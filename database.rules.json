@@ -1,0 +1,16 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true",
+    "candidatos": {
+      ".indexOn": [
+        "email"
+      ]
+    },
+    "administradores": {
+      ".indexOn": [
+        "email"
+      ]
+    }
+  }
+}

@@ -1,12 +1,32 @@
+.topo {      
+     height: 50px;     
+     background: #121310;
+     white-space: nowrap;         
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 img {
-    padding-left: 45px;
-    width: 75%;
+     padding-top: 5px;
+     padding-left: 5px;
+    max-height: 45px;
+    max-width: 1400px;
+    width: 50%;
+    vertical-align:  center;
 }
 
-.topo {
-     background: #2d3b59;
+
+
+.nav.navbar-nav li a:focus,
+.nav.navbar-nav li a:hover {
+    color: white; 
+    border-bottom: 5px solid #329CEE;
+    /*margin: 1px;*/
 }
 
-a {
-    color: white;
-}
+
+

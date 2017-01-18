@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Candidato } from '../../candidato.model';
 import { FirebaseService } from '../../services/firebase.service';
-import { AlertTimeOutComponent } from '../alert-time-out/alert-time-out.component';
 
 import { Auth } from '../../services/auth.service';
 
@@ -13,15 +12,16 @@ import { Auth } from '../../services/auth.service';
   providers: [FirebaseService]
 })
 export class CandidatoFormComponent implements OnInit {
+  profile: any;
   candidatos: Candidato[];   
   alert: any = {};
   
-/*   
-  model= new Candidato(1, '', '', '',  '', '', '', null, '', '', '', 
+
+  model= new Candidato(1, '', '', '', '',  '', '', '', null, '', '', '', 
   '', '', '',  '',  '', '', '', '', '', '',  '', '', '');   
-*/
- 
-model = new Candidato(1, 'Representante', 
+/*
+model = new Candidato(1, '',
+                         'Profissional em TI', 
                          'Eduardo Lucas', 
                          'Masculino',  
                          'eduardolucas@gmail.com', 
@@ -32,13 +32,15 @@ model = new Candidato(1, 'Representante',
                          '', '', '',
                          'Rua Dr. Hosannah de Olveira',  '155', 'Cond. Deauville Ap. 702-B', 'Itaigara', 'Salvador', 'BA', 
                          '12345',  'Inglês avançado', '12345', '12345');   
-
+*/
 
   constructor(private _firebaseService: FirebaseService,
               private auth: Auth) { }
 
   
   ngOnInit() {
+    this.profile = JSON.parse(localStorage.getItem('profile'));    
+    this.model.email = this.profile.email;
     // Candidatos    
     this._firebaseService.getCandidatos().subscribe(candidatos => {
       this.candidatos = candidatos;

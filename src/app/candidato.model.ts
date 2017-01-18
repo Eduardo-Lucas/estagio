@@ -1,6 +1,7 @@
 export class Candidato {
     constructor(
         public id?: number,
+        public admin?: string,
         public tipo?: string,
         public nome?: string,
         public sexo?: string,

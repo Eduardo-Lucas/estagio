@@ -1,31 +1,68 @@
  <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+      <div class="container">
+        <div class="jumbotron">
+            <h1>Trabalhe conosco.</h1>
+            <p class="lead">Atue com tecnologia e se desenvolva ao lado de uma empresa com mais de 20 anos de mercado.</p>
+            <p *ngIf="auth.authenticated()"> <a class="btn btn-danger btn-lg" routerLink="/formulario" role="button">Inicie sua carreira agora &raquo;</a></p>
+            <p *ngIf="!auth.authenticated()"><a class="btn btn-success btn-lg" href="#" (click)="auth.login()" role="button">Inicie sua carreira agora &raquo;</a></p>
+         </div>
       </div>
 
       <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-lg-3">
-          <h2>Franquia Usesoft</h2>
-          <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+      <div class="container">
+        <div class="col-md-3">
+          <h3>Estágio</h3>
+          <p class="text-danger"><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Estar se graduando em uma área da informática</li>
+            <li>Conhecimento básico em informática</li>
+            <li>Boa capacidade de comunicação</li>
+          </ul>         
+        
+          <p class="text-danger"><strong>Características desejáveis:</strong></p>
+          <ul>
+            <li>Conhecimento básico em funcionamento de empresas (estoque, compras, NFe, financeiro)</li>
+            <li>Conhecimento básico em programação: Angular (HTML + CSS + JavaScript)</li>
+          </ul>
         </div>
-        <div class="col-lg-3">
-          <h2>Estagiário</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-lg-3">
-          <h2>Consultor</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+        <div class="col-md-3">
+          <h3>Suporte Técnico</h3>
+          <p class="text-danger"><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Graduação completa em uma área da informática</li>
+            <li>Conhecimento avançado em informática</li>
+            <li>Boa capacidade de comunicação</li>
+            <li>Conhecimento em funcionamento de empresas (estoque, compras, NFe, financeiro)</li>
+          </ul>    
+          <ul>
+            <li>Experiência com suporte a Clientes</li>
+            <li>Conhecimento básico em programação: Angular (HTML + CSS + JavaScript)</li>
+          </ul>
         </div>
-        <div class="col-lg-3">
-          <h2>Profissional</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
+        <div class="col-md-3">
+          <h3>Profissional em TI</h3>
+          <p class="text-danger"><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Graduação completa em uma área da informática</li>
+            <li>Conhecimento avançado em informática</li>
+            <li>Boa capacidade de comunicação</li>
+            <li>Conhecimento básico em programação: Angular (HTML + CSS + JavaScript)</li>
+            <li>Restful Web Services</li>
+            <li>Banco de Dados: Oracle, MySQL, PostgreSQL</li>
+          </ul>
+          </div>
+        <div class="col-md-3">
+          <h3>Consultor Comercial</h3>
+          <p class="text-danger"><strong>Requisitos:</strong></p>
+          <ul>
+            <li>Ótima capacidade de comunicação verbal e escrita</li>
+            <li>Boa capacidade em demonstração, venda e negociação de serviços</li>
+            <li>Experiência com venda de serviços</li>
+          </ul>              
+    
+          <p class="text-danger"><strong>Características desejáveis:</strong></p>
+          <ul>
+            <li>Graduação completa em Marketing, Administração ou Ciências Contábeis</li>
+            <li>Experiência em venda de software</li>
+          </ul>
       </div>

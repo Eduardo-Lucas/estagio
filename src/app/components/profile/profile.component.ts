@@ -1,57 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Auth } from '../../services/auth.service';
 import { Administrador } from '../../administrador.model';
 import { Candidato } from '../../candidato.model';
 import { FirebaseService } from '../../services/firebase.service';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-import { Auth } from '../../services/auth.service';
 
 @Component({
-  selector: 'candidato-list',
-  templateUrl: './candidato-list.component.html',
-  styleUrls: ['./candidato-list.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
   providers: [FirebaseService]
 })
-export class CandidatoListComponent implements OnInit  {
-  profile: any;
+export class ProfileComponent implements OnInit {
   administradores: Administrador[];
   candidatos: Candidato[];
-
+  profile: any;
+  appState : string;
+  activeKey: string;
   model= new Candidato(1, '', '', '', '',  '', '', '', null, '', '', '', 
-  '', '', '',  '',  '', '', '', '', '', '',  '', '', '');   
-  recAdmin = new Administrador('', '') ;
+  '', '', '',  '',  '', '', '', '', '', '',  '', '', ''); 
 
-   appState : string;
-   activeKey: string;
 
   constructor(private _firebaseService: FirebaseService,
-              private auth: Auth) {
-  }
-
+              private auth: Auth) { 
+    }
 
   ngOnInit() {
-    this.profile = JSON.parse(localStorage.getItem('profile'));    
-    //console.log("Email Passado: "+JSON.stringify(this.profile.email));
-
-// Busca APENAS O candidato na Nuvem
-         console.log("SÓ UM CANDIDATO! ");
-        this._firebaseService.getAdministradores(this.profile.email).subscribe(administradores => {         
-          this.recAdmin = administradores;
+    if(this.auth.authenticated) {
+      this.profile = JSON.parse(localStorage.getItem('profile'));    
+        console.log("Email Passado: "+JSON.stringify(this.profile.email));
+      /*  De posse do email logado, preciso verificar se pertence ou não a um Administrador.
+          Se pertencer a um Administrador, a lista vai aparecer com todos os candidatos.
+          Caso contrário, vai aparecer apenas o Perfil do candidato.
+      */
+      // Busca administradores na Nuvem
+      this._firebaseService.getAdministradores(this.profile.email).subscribe(administradores => {
+        console.log("Administradores: "+administradores);        
+        this.administradores = administradores;
         });
 
-         console.log("Admins na Nubem: " + this.recAdmin);
-
-
-        // Busca APENAS O candidato na Nuvem
-         console.log("SÓ UM CANDIDATO! ");
-        this._firebaseService.getCandidatos(this.profile.email).subscribe(candidatos => {
-          //console.log(candidatos);
-          this.candidatos = candidatos;
-        });
-
-  }
+        
+        if(this.administradores) {
+          // Busca TODOS candidatos na Nuvem
+          this._firebaseService.getCandidatos().subscribe(candidatos => {
+            //console.log("Candidatos: "+JSON.stringify(candidatos));
+            this.candidatos = candidatos;
+            });
   
+        } else {
+          // Busca APENAS UM candidato na Nuvem
+          this._firebaseService.getCandidatos(this.profile.email).subscribe(candidatos => {
+            //console.log("Candidatos: "+JSON.stringify(candidatos));
+            this.candidatos = candidatos;
+            });
+        }        
+      }
+  
+  }
+
   changeState(state, key) {    
     if(key) {    
       this.activeKey = key;
@@ -66,7 +73,6 @@ export class CandidatoListComponent implements OnInit  {
 
   atualizaCadastro() {
     var updCadastro = {
-         admin: 'não',
          tipo: this.model.tipo,
          nome: this.model.nome ,
          sexo: this.model.sexo ,
@@ -102,6 +108,7 @@ deleteCandidato(key) {
     this._firebaseService.deleteCandidato(key);
     this.changeState('default', null); 
   }
+
 
   
 

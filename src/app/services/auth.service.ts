@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { options } from '../auth.options';
 
 // Avoid name not found warnings
 //declare var Auth0Lock: any;
@@ -8,7 +9,7 @@ let Auth0Lock = require('auth0-lock').default;
 @Injectable()
 export class Auth {
     // Configure Auth0Lock
-    lock = new Auth0Lock('Df77yobHO4872DSRgKsW9QhUwVsNKu5u', 'eduardolucas.auth0.com', {});
+    lock = new Auth0Lock('Df77yobHO4872DSRgKsW9QhUwVsNKu5u', 'eduardolucas.auth0.com', options);
 
     constructor() {
         // Add callback for lock `authenticated` event

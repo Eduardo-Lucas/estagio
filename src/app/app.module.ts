@@ -7,6 +7,7 @@ import { AlertModule } from 'ng2-bootstrap';
 
 import { AUTH_PROVIDERS }      from 'angular2-jwt';
 import { Auth } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
 import { CandidatoFormComponent } from './components/candidato-form/candidato-form.component';
 import { CandidatoListComponent } from './components/candidato-list/candidato-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { AlertTimeOutComponent } from './components/alert-time-out/alert-time-out.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -30,8 +32,8 @@ export const firebaseConfig = {
     CandidatoFormComponent,
     CandidatoListComponent,
     HomeComponent,
-    AlertTimeOutComponent
-  ],
+    NotFoundComponent,
+    ProfileComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -42,7 +44,8 @@ export const firebaseConfig = {
   ],
   providers: [appRoutingProviders, 
               AUTH_PROVIDERS,
-              Auth],
+              Auth,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

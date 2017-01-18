@@ -12,13 +12,23 @@ h4 {
     display: inline-block;
 }
 
-.box  {          
-    margin-top: 45px;     
-    vertical-align: middle;    
-    text-align : center;      
-    }
+.detalhes, .edita {
+    background: #121310;
+    border: 10px solid;
+    color: white;
+}
 
-button {
-    width: 100%; 
-    margin-top: 5px; 
+.lista {
+    padding: 0px;
+}
+
+.box  {           
+    
+    vertical-align: middle;
+    
+    text-align : center;    
+}
+.row {
+    margin-left: 25px;
+    margin-right: 25px;
 }
