@@ -117,7 +117,7 @@
       <input type="date" class=" form-control" id="dataNascimento" min="1937-12-31" max="1998-12-31" minlength="6"  required [(ngModel)]="model.dataNascimento" name="dataNascimento" #dataNascimento="ngModel">
       
     </div>
-    <div class="col-xs-6 col-md-2">
+    <div class="col-xs-18 col-md-2">
       <label for="estadoCivil">Estado Civil</label>
       <select class="form-control" id="estadoCivil" required [(ngModel)]="model.estadoCivil" name="estadoCivil" #estadoCivil="ngModel">
           <option>Solteiro</option>
@@ -125,7 +125,7 @@
           <option>Divorciado</option>
       </select>
     </div>    
-    <div class="col-xs-6 col-md-2">
+    <div class="col-xs-18 col-md-2">
       <label for="filhos">Filhos</label>
       <select class="form-control" id="filhos" required [(ngModel)]="model.filhos" name="filhos" #filhos="ngModel">
           <option>0</option>
@@ -183,11 +183,11 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-3 col-md-3">
+    <div class="col-xs-18 col-md-3">
       <label for="numero">Número</label>
       <input type="text" class="form-control" id="numero" [(ngModel)]="model.numero" name="numero" #numero="ngModel">
     </div>
-    <div class="col-xs-9 col-md-3">
+    <div class="col-xs-18 col-md-3">
       <label for="complemento">Complemento</label>
       <input type="text" class="form-control" id="complemento"  [(ngModel)]="model.complemento" name="complemento" #complemento="ngModel">
     </div>
@@ -206,7 +206,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-7 col-md-6">
+    <div class="col-xs-18 col-md-6">
       <label for="cidade">Cidade</label>
       <input type="text" class="form-control" id="cidade" required minlength="5" maxlength="30" [(ngModel)]="model.cidade" name="cidade" #cidade="ngModel">
       <div *ngIf="cidade.errors && (cidade.dirty || cidade.touched)" class="alert alert-danger">
@@ -221,7 +221,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-5 col-md-2">
+    <div class="col-xs-18 col-md-2">
       <label for="uf">UF</label>      
       <select class="form-control" id="uf" required [(ngModel)]="model.uf" name="uf" #uf="ngModel">
           <option>BA</option>

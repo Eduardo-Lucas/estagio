@@ -2,7 +2,7 @@
       <div class="container">
         <div class="jumbotron">
             <h1>Trabalhe conosco.</h1>
-            <p class="lead">Atue com tecnologia e se desenvolva ao lado de uma empresa com mais de 20 anos de mercado.</p>
+            <p class="lead"><strong>Atue com tecnologia e se desenvolva ao lado de uma empresa com mais de 20 anos de mercado.</strong></p>
             <p *ngIf="auth.authenticated()"> <a class="btn btn-danger btn-lg" routerLink="/formulario" role="button">Inicie sua carreira agora &raquo;</a></p>
             <p *ngIf="!auth.authenticated()"><a class="btn btn-success btn-lg" href="#" (click)="auth.login()" role="button">Inicie sua carreira agora &raquo;</a></p>
          </div>
